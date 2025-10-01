@@ -1,25 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Editar Médico</h2>
+<div class="container">
+    <h2 class="mb-4">Editar Médico</h2>
 
-<form action="{{ route('medicos.update', $medico) }}" method="POST">
-    @csrf
-    @method('PUT')
+    <form action="{{ route('medicos.update', $medico->id) }}" method="POST" class="card shadow p-4">
+        @csrf
+        @method('PUT')
 
-    <h3>Datos Personales</h3>
-    <label>Tipo Documento: <input type="text" name="tipo_documento" value="{{ $medico->persona->tipo_documento }}"></label>
-    <label>Documento: <input type="text" name="documento" value="{{ $medico->persona->documento }}"></label>
-    <label>Nombres: <input type="text" name="nombres" value="{{ $medico->persona->nombres }}"></label>
-    <label>Apellidos: <input type="text" name="apellidos" value="{{ $medico->persona->apellidos }}"></label>
-    <label>Fecha Nacimiento: <input type="date" name="fecha_nacimiento" value="{{ $medico->persona->fecha_nacimiento }}"></label>
-    <label>Teléfono: <input type="text" name="telefono" value="{{ $medico->persona->telefono }}"></label>
-    <label>Email: <input type="email" name="email" value="{{ $medico->persona->email }}"></label>
+        <!-- Documento, Nombres, Apellidos -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Documento</label>
+                <input type="text" name="documento" value="{{ $medico->persona->documento }}" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Nombres</label>
+                <input type="text" name="nombres" value="{{ $medico->persona->nombres }}" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Apellidos</label>
+                <input type="text" name="apellidos" value="{{ $medico->persona->apellidos }}" class="form-control" required>
+            </div>
+        </div>
 
-    <h3>Datos de Médico</h3>
-    <label>Tarjeta Profesional: <input type="text" name="tarjeta_profesional" value="{{ $medico->tarjeta_profesional }}"></label>
-    <label>Especialidad: <input type="text" name="especialidad" value="{{ $medico->especialidad }}"></label>
+        <!-- Tarjeta profesional y especialidad -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Tarjeta Profesional</label>
+                <input type="text" name="tarjetaProfesional" value="{{ $medico->tarjetaProfesional }}" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Especialidad</label>
+                <input type="text" name="especialidad" value="{{ $medico->especialidad }}" class="form-control" required>
+            </div>
+        </div>
 
-    <button type="submit">Actualizar</button>
-</form>
+        <!-- Botones -->
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('medicos.index') }}" class="btn btn-secondary">⬅ Volver</a>
+            <button type="submit" class="btn btn-primary">💾 Guardar Cambios</button>
+        </div>
+    </form>
+</div>
 @endsection
