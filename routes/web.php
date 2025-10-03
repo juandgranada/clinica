@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\ConsultasMedicasController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,5 @@ Route::get('/', function () {
 
 Route::resource('medicos', MedicosController::class); //CRUD medicos
 Route::resource('pacientes', PacientesController::class); //CRUD pacientes
+Route::resource('consultas_medicas', ConsultasMedicasController::class); //CRUD consultas medicas
 
