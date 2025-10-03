@@ -39,7 +39,6 @@ class ConsultasMedicasController extends Controller
         $request->validate([
             'paciente_id' => 'required|exists:pacientes,id',
             'medico_id' => 'required|exists:medicos,id',
-            'fecha_hora' => 'required|date',
             'motivo_consulta' => 'required|string|max:1000',
             'diagnostico' => 'nullable|string|max:1000',
             'tratamiento_sugerido' => 'nullable|string|max:1000',
@@ -64,7 +63,7 @@ class ConsultasMedicasController extends Controller
     public function show($id)
     {
         $consulta = ConsultasMedicas::with(['paciente.persona', 'medico.persona'])->findOrFail($id);
-        return view('consultas_medicas.show', compact('consulta'));
+        return view('consultas.show', compact('consulta'));
     }
 
     /**
@@ -76,7 +75,7 @@ class ConsultasMedicasController extends Controller
         $pacientes = Pacientes::with('persona')->get();
         $medicos   = Medicos::with('persona')->get();
 
-        return view('consultas_medicas.edit', compact('consulta', 'pacientes', 'medicos'));
+        return view('consultas.edit', compact('consulta', 'pacientes', 'medicos'));
     }
 
     /**

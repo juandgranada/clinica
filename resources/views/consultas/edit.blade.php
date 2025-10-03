@@ -16,7 +16,7 @@
                         <select class="form-control" name="paciente_id" required>
                             @foreach($pacientes as $paciente)
                                 <option value="{{ $paciente->id }}" {{ $consulta->paciente_id == $paciente->id ? 'selected' : '' }}>
-                                    {{ $paciente->nombres }} {{ $paciente->apellidos }}
+                                    {{ $paciente->persona->nombres }} {{ $paciente->persona->apellidos }}
                                 </option>
                             @endforeach
                         </select>
@@ -27,7 +27,7 @@
                         <select class="form-control" name="medico_id" required>
                             @foreach($medicos as $medico)
                                 <option value="{{ $medico->id }}" {{ $consulta->medico_id == $medico->id ? 'selected' : '' }}>
-                                    {{ $medico->nombres }} {{ $medico->apellidos }}
+                                    {{ $medico->persona->nombres }} {{ $medico->persona->apellidos }}
                                 </option>
                             @endforeach
                         </select>
