@@ -20,6 +20,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('medicos.index') }}">👨‍⚕️ Médicos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('pacientes.index') }}">🧑‍🤝‍🧑 Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('consultas_medicas.index') }}">📋 Consultas</a></li> 
                 </ul>
             </div>
         </div>
