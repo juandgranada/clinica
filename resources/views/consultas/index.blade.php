@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($consultas as $consulta)
+                    @forelse($consultas as $consulta)
                         <tr>
                             <td>{{ $consulta->id }}</td>
                             <td>{{ $consulta->paciente->persona->nombres }} {{ $consulta->paciente->persona->apellidos }}</td>
@@ -34,7 +34,11 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">No hay consultas registradas.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
 
