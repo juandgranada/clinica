@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Pacientes;
 use App\Models\Personas;
 use Illuminate\Http\Request;
+use App\Models\Usuarios;
+use Illuminate\Support\Facades\Hash;
 
 class PacientesController extends Controller
 {
@@ -21,28 +23,34 @@ class PacientesController extends Controller
 
     public function store(Request $request)
     {
-        $persona = Personas::create($request->only([
-            'tipo_documento',
-            'documento',
-            'nombres',
-            'apellidos',
-            'fecha_nacimiento',
-            'telefono',
-            'email'
-        ]));
-
-        Pacientes::create([
-            'persona_id' => $persona->id,
-            'seguro_medico' => $request->seguro_medico,
-            'contacto_emergencia' => $request->contacto_emergencia,
+        // Crear persona
+        $persona = Personas::create([
+            'tipo_documento'   => $request->tipo_documento,
+            'documento'        => $request->documento,
+            'nombres'          => $request->nombres,
+            'apellidos'        => $request->apellidos,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'telefono'         => $request->telefono,
+            'email'            => $request->email,
         ]);
 
-        return redirect()->route('pacientes.index');
-    }
-    public function show($id)
-    {
-        $paciente = Pacientes::with('persona')->findOrFail($id);
-        return view('pacientes.show', compact('paciente'));
+        // Crear paciente
+        $paciente = Pacientes::create([
+            'persona_id'          => $persona->id,
+            'seguro_medico' => $request->seguro_medico,
+            'contacto_emergencia'        => $request->contacto_emergencia,
+        ]);
+
+        // Crear usuario automáticamente
+        Usuarios::create([
+            'persona_id' => $persona->id,
+            'username'   => $persona->email,             // email como username
+            'password'   => Hash::make($persona->documento), // documento como password
+            'rol'        => 'PACIENTE',
+        ]);
+
+        return redirect()->route('pacientes.index')
+            ->with('success', 'Paciente y usuario creados correctamente.');
     }
 
 
