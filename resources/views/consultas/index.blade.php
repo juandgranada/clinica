@@ -21,8 +21,8 @@
                     @foreach($consultas as $consulta)
                         <tr>
                             <td>{{ $consulta->id }}</td>
-                            <td>{{ $consulta->paciente->nombres }} {{ $consulta->paciente->apellidos }}</td>
-                            <td>{{ $consulta->medico->nombres }} {{ $consulta->medico->apellidos }}</td>
+                            <td>{{ $consulta->paciente->persona->nombres }} {{ $consulta->paciente->persona->apellidos }}</td>
+                            <td>{{ $consulta->medico->persona->nombres }} {{ $consulta->medico->persona->apellidos }}</td>
                             <td>{{ $consulta->fecha_hora }}</td>
                             <td>
                                 <a href="{{ route('consultas_medicas.show', $consulta->id) }}" class="btn btn-info btn-sm">👁 Ver</a>

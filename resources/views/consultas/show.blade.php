@@ -6,8 +6,8 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <p><strong>Paciente:</strong> {{ $consulta->paciente->nombres }} {{ $consulta->paciente->apellidos }}</p>
-            <p><strong>Médico:</strong> {{ $consulta->medico->nombres }} {{ $consulta->medico->apellidos }}</p>
+            <p><strong>Paciente:</strong> {{ $consulta->paciente->persona->nombres }} {{ $consulta->paciente->persona->apellidos }}</p>
+            <p><strong>Médico:</strong> {{ $consulta->medico->persona->nombres }} {{ $consulta->medico->persona->apellidos }}</p>
             <p><strong>Fecha y Hora:</strong> {{ $consulta->fecha_hora }}</p>
             <p><strong>Motivo de la Consulta:</strong><br>{{ $consulta->motivo_consulta }}</p>
             <p><strong>Diagnóstico:</strong> {{ $consulta->diagnostico }}</p>
