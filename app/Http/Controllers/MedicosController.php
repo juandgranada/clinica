@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Medicos;
 use App\Models\Personas;
 use Illuminate\Http\Request;
+use App\Models\Usuarios;
+use Illuminate\Support\Facades\Hash;
+
 
 class MedicosController extends Controller
 {
@@ -21,23 +24,34 @@ class MedicosController extends Controller
 
     public function store(Request $request)
     {
-        $persona = Personas::create($request->only([
-            'tipo_documento',
-            'documento',
-            'nombres',
-            'apellidos',
-            'fecha_nacimiento',
-            'telefono',
-            'email'
-        ]));
-
-        Medicos::create([
-            'persona_id' => $persona->id,
-            'tarjeta_profesional' => $request->tarjeta_profesional,
-            'especialidad' => $request->especialidad,
+        // Crear persona
+        $persona = Personas::create([
+            'tipo_documento'   => $request->tipo_documento,
+            'documento'        => $request->documento,
+            'nombres'          => $request->nombres,
+            'apellidos'        => $request->apellidos,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'telefono'         => $request->telefono,
+            'email'            => $request->email,
         ]);
 
-        return redirect()->route('medicos.index');
+        // Crear médico
+        $medico = Medicos::create([
+            'persona_id'          => $persona->id,
+            'tarjeta_profesional' => $request->tarjeta_profesional,
+            'especialidad'        => $request->especialidad,
+        ]);
+
+        // Crear usuario automáticamente
+        Usuarios::create([
+            'persona_id' => $persona->id,
+            'username'   => $persona->email,             // email como username
+            'password'   => Hash::make($persona->documento), // documento como password
+            'rol'        => 'MEDICO',
+        ]);
+
+        return redirect()->route('medicos.index')
+            ->with('success', 'Médico y usuario creados correctamente.');
     }
 
     public function show($id)
