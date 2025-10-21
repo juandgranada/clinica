@@ -3,6 +3,14 @@
 @section('content')
 <div class="container mt-4">
     <h2 class="mb-4">Consultas Médicas</h2>
+
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <a href="{{ route('consultas_medicas.create') }}" class="btn btn-primary mb-3">➕ Nueva Consulta</a>
 
     <div class="card shadow">
@@ -50,3 +58,17 @@
     </div>
 </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const alert = document.getElementById('alert-success');
+        if (alert) {
+            setTimeout(() => {
+                // Desaparece con animación si tienes Bootstrap
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500); // luego lo elimina del DOM
+            }, 3000); // 3000 ms = 3 segundos
+        }
+    });
+</script>
+
