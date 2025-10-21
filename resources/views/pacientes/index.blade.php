@@ -4,6 +4,12 @@
 <div class="container">
     <h1 class="mb-4">Lista de Pacientes</h1>
 
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert" id="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Botón para crear nuevo paciente -->
     <div class="mb-3">
         <a href="{{ route('pacientes.create') }}" class="btn btn-primary">
@@ -62,3 +68,16 @@
     </div>
 </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const alert = document.getElementById('alert-success');
+        if (alert) {
+            setTimeout(() => {
+                // Desaparece con animación si tienes Bootstrap
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500); // luego lo elimina del DOM
+            }, 3000); // 3000 ms = 3 segundos
+        }
+    });
+</script>

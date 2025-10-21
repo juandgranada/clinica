@@ -50,8 +50,7 @@ class MedicosController extends Controller
             'rol'        => 'MEDICO',
         ]);
 
-        return redirect()->route('medicos.index')
-            ->with('success', 'Médico y usuario creados correctamente.');
+        return redirect()->route('medicos.index')->with('success', 'Médico creado correctamente.');
     }
 
     public function show($id)

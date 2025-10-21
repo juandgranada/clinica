@@ -53,8 +53,7 @@ class ConsultasMedicasController extends Controller
             'tratamiento_sugerido' => $request->tratamiento_sugerido,
         ]);
 
-        return redirect()->route('consultas_medicas.index')
-            ->with('success', 'Consulta médica registrada correctamente.');
+        return redirect()->route('consultas_medicas.index')->with('success', 'Consulta médica registrada correctamente.');
     }
 
     /**
