@@ -49,8 +49,8 @@ class PacientesController extends Controller
             'rol'        => 'PACIENTE',
         ]);
 
-        return redirect()->route('pacientes.index')
-            ->with('success', 'Paciente y usuario creados correctamente.');
+        return redirect()->route('pacientes.index')->with('success', 'Paciente creado correctamente');
+
     }
 
 

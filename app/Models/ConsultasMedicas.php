@@ -29,4 +29,10 @@ class ConsultasMedicas extends Model
     {
         return $this->belongsTo(Medicos::class);
     }
+
+    public function imagenes()
+    {
+        return $this->hasMany(\App\Models\Imagenes::class, 'consulta_id');
+    }
+
 }

@@ -63,6 +63,8 @@ class ConsultasMedicasController extends Controller
     public function show($id)
     {
         $consulta = ConsultasMedicas::with(['paciente.persona', 'medico.persona'])->findOrFail($id);
+        $consulta = \App\Models\ConsultasMedicas::with('imagenes')->findOrFail($id);
+
         return view('consultas.show', compact('consulta'));
     }
 
