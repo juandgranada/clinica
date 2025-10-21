@@ -57,19 +57,25 @@
         </div>
 
         <div class="modal-body">
+            <div class="row mb-3">
             <form action="{{ route('imagenes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="consulta_id" value="{{ $consulta->id }}">
-            <input type="file" name="ruta_imagen" required>
-            <select name="tipo_imagen" required>
+            <input type="hidden" class="form-control"name="consulta_id" value="{{ $consulta->id }}">
+            <input type="file" class="form-control"name="ruta_imagen" required>
+            <br>
+            <select name="tipo_imagen" class="form-control" required>
+                <option value="">-- Selecciona --</option>
                 <option value="radiografía">Radiografía</option>
                 <option value="examen">Examen</option>
                 <option value="documento">Documento</option>
                 <option value="otros">Otros</option>
             </select>
-            <textarea name="descripcion"></textarea>
-            <button type="submit">Guardar</button>
+            <br>
+            <textarea class="form-control" name="descripcion"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
+        </div>
         </div>
         </div>
     </div>
