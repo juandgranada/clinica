@@ -70,10 +70,12 @@
             <br>
             <select name="tipo_imagen" class="form-control" required>
                 <option value="">-- Selecciona --</option>
-                <option value="radiografía">Radiografía</option>
-                <option value="examen">Examen</option>
-                <option value="documento">Documento</option>
-                <option value="otros">Otros</option>
+                <option value="Radiografia">Radiografía</option>
+                <option value="Ecografia">Ecografía</option>
+                <option value="Mamografia">Mamografía</option>
+                <option value="Resonancia Magnetica">Resonancia Magnética</option>
+                <option value="Tomografia">Tomografía</option>
+                <option value="Generica">Genérica</option>
             </select>
             <br>
             <textarea class="form-control" name="descripcion"></textarea>
