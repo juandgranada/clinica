@@ -5,6 +5,26 @@
     <title>Clínica</title>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    body {
+        background-image: url("{{ asset('storage/imagenes/fondo-clinica.jpg') }}");
+        background-size: contain; /* <-- usa contain en vez de cover */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #f4f8fb; /* color de respaldo */
+        min-height: 100vh;
+    }
+
+    /* Capa semitransparente opcional para mejor contraste */
+    main {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
 </head>
 <body>
     <!-- Navbar -->
