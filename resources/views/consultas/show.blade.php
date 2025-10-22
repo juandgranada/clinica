@@ -8,17 +8,22 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <div class="card mb-4">
+    <div class="card shadow mb-4">
         <div class="card-body">
+            {{-- 
             <p><strong>ID:</strong> {{ $consulta->id }}</p>
+            --}}
             <p><strong>Paciente:</strong> {{ $consulta->paciente->persona->nombres }} {{ $consulta->paciente->persona->apellidos }}</p>
             <p><strong>Médico:</strong> {{ $consulta->medico->persona->nombres }} {{ $consulta->medico->persona->apellidos }}</p>
             <p><strong>Fecha y hora:</strong> {{ $consulta->fecha_hora }}</p>
             <p><strong>Motivo de la consulta:</strong> {{ $consulta->motivo_consulta }}</p>
             <p><strong>Diagnóstico:</strong> {{ $consulta->diagnostico }}</p>
             <p><strong>Tratamiento sugerido:</strong> {{ $consulta->tratamiento_sugerido }}</p>
+            
         </div>
     </div>
+
+    <a href="{{ route('consultas_medicas.index') }}" class="btn btn-secondary mb-3">⬅️ Volver</a>
 
     <h4>Imágenes asociadas</h4>
     @if ($consulta->imagenes && $consulta->imagenes->count())
