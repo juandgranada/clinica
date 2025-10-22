@@ -20,7 +20,7 @@
     <!-- Tabla de médicos -->
     <div class="card shadow">
         <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
