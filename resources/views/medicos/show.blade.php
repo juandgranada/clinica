@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container">
@@ -6,7 +6,8 @@
 
     <div class="card shadow mt-3">
         <div class="card-body">
-            <h4 class="card-title">{{ $medico->persona->nombres }} {{ $medico->persona->apellidos }}</h4>
+            <h4 class="card-title"><strong>{{ $medico->persona->nombres }} {{ $medico->persona->apellidos }}</strong></h4>
+            <br></br>
             <p><strong>Tipo Documento: </strong> {{ $medico->persona->tipo_documento }}</p>
             <p><strong>Documento: </strong> {{ $medico->persona->documento }}</p>
             <p><strong>Fecha de Nacimiento: </strong> {{ $medico->persona->fecha_nacimiento }}</p>

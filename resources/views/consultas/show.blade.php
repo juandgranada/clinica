@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container mt-4">
@@ -24,16 +24,19 @@
     </div>
 
     <a href="{{ route('consultas_medicas.index') }}" class="btn btn-secondary mb-3">⬅️ Volver</a>
+    <br>
+    {{-- Botón para abrir el modal --}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarImagen">
+        📷 Agregar Imagen
+    </button>
 
-    <h4>Imágenes asociadas</h4>
+    <h4 class="mt-4">Imágenes asociadas</h4>
     @if ($consulta->imagenes && $consulta->imagenes->count())
         <div class="row">
             @foreach ($consulta->imagenes as $img)
                 <div class="col-md-3 mb-3">
                     <div class="card">
-                        <img src="{{ asset('storage/' . $img->ruta_imagen) }}"
-                            class="card-img-top"
-                            alt="Imagen de consulta">
+                        <img src="{{ asset('storage/' . $img->ruta_imagen) }}" class="card-img-top" alt="Imagen de consulta">
                         <div class="card-body text-center">
                             <p>{{ $img->descripcion }}</p>
                         </div>
@@ -44,50 +47,51 @@
     @else
         <p>No hay imágenes cargadas para esta consulta.</p>
     @endif
-    
-    {{-- Botón para abrir el modal --}}
-    <div class="mt-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarImagen">
-            📷Agregar Imagen
-        </button>
-    </div>
+</div>
 
-    {{-- Modal para subir imagen --}}
-    <div class="modal fade" id="modalAgregarImagen" tabindex="-1" aria-labelledby="modalAgregarImagenLabel" aria-hidden="true">
-    <div class="modal-dialog">
+{{-- Modal para subir imagen --}}
+<div class="modal fade" id="modalAgregarImagen" tabindex="-1" role="dialog" aria-labelledby="modalAgregarImagenLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modalAgregarImagenLabel">Subir Imagen</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarImagenLabel">Subir Imagen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-        <div class="modal-body">
-            <div class="row mb-3">
             <form action="{{ route('imagenes.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" class="form-control"name="consulta_id" value="{{ $consulta->id }}">
-            <input type="file" class="form-control"name="ruta_imagen" required>
-            <br>
-            <select name="tipo_imagen" class="form-control" required>
-                <option value="">-- Selecciona --</option>
-                <option value="Radiografia">Radiografía</option>
-                <option value="Ecografia">Ecografía</option>
-                <option value="Mamografia">Mamografía</option>
-                <option value="Resonancia Magnetica">Resonancia Magnética</option>
-                <option value="Tomografia">Tomografía</option>
-                <option value="Generica">Genérica</option>
-            </select>
-            <br>
-            <textarea class="form-control" name="descripcion"></textarea>
-            <br>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
-        </div>
-        </div>
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="consulta_id" value="{{ $consulta->id }}">
+                    <div class="form-group">
+                        <label for="ruta_imagen">Selecciona una imagen</label>
+                        <input type="file" class="form-control" name="ruta_imagen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_imagen">Tipo de imagen</label>
+                        <select name="tipo_imagen" class="form-control" required>
+                            <option value="">-- Selecciona --</option>
+                            <option value="Radiografia">Radiografía</option>
+                            <option value="Ecografia">Ecografía</option>
+                            <option value="Mamografia">Mamografía</option>
+                            <option value="Resonancia Magnética">Resonancia Magnética</option>
+                            <option value="Tomografia">Tomografía</option>
+                            <option value="Genérica">Genérica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea class="form-control" name="descripcion"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
-
-
-@endsection    
-
+</div>
+@stop

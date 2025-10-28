@@ -337,7 +337,7 @@ return [
         ],
         [
             'text' => 'Consultas',
-            'url'  => 'consultas',
+            'url'  => 'consultas_medicas',
             'icon' => 'fas fa-notes-medical',
         ],
     ],

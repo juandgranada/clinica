@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Panel de Administración')
+@section('title', 'AURA')
 
 @section('content_header')
-    <h1>Bienvenido al Panel de Administración</h1>
+    <h1>AURA: Advance Utility for Radiology and AI.</h1>
 @stop
 
 @section('content')
