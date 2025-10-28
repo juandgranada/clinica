@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container mt-4">
@@ -11,7 +11,7 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="tipo_documento" class="form-label">Tipo Documento</label>
-                <select name="tipo_documento" class="form-select" required>
+                <select name="tipo_documento" class="form-control" required>
                     <option value="">-- Selecciona --</option>
                     <option value="TI">TI - Tarjeta de Identidad</option>
                     <option value="CC">CC - Cédula de Ciudadanía</option>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="tipoDocumento" class="form-label">Tipo Documento</label>
-                        <select name="tipoDocumento" class="form-select" required>
+                        <select name="tipoDocumento" class="form-control" required>
                             <option value="CC" {{ $medico->persona->tipoDocumento == 'CC' ? 'selected' : '' }}>Cédula de Ciudadanía</option>
                             <option value="CE" {{ $medico->persona->tipoDocumento == 'CE' ? 'selected' : '' }}>Cédula de Extranjería</option>
                             <option value="PEP" {{ $medico->persona->tipoDocumento == 'PEP' ? 'selected' : '' }}>Permiso Especial de Permanencia</option>
