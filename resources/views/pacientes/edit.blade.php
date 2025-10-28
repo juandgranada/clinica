@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="tipoDocumento" class="form-label">Tipo Documento</label>
-                        <select name="tipoDocumento" class="form-select" required>
+                        <select name="tipoDocumento" class="form-control" required>
                             <option value="CC" {{ $paciente->persona->tipoDocumento == 'CC' ? 'selected' : '' }}>Cédula de Ciudadanía</option>
                             <option value="CE" {{ $paciente->persona->tipoDocumento == 'CE' ? 'selected' : '' }}>Cédula de Extranjería</option>
                             <option value="PEP" {{ $paciente->persona->tipoDocumento == 'PEP' ? 'selected' : '' }}>Permiso Especial de Permanencia</option>
@@ -71,7 +71,7 @@
 
                 <!-- Botones -->
                 <div class="d-flex justify-content-between">
-                    <a href="{{ route('medicos.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('pacientes.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Volver
                     </a>
                     <button type="submit" class="btn btn-primary">

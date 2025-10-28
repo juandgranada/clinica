@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard')
 
 @section('content')
 <div class="container mt-4">
@@ -33,7 +33,7 @@
                             <td>{{ $consulta->medico->persona->nombres }} {{ $consulta->medico->persona->apellidos }}</td>
                             <td>{{ $consulta->fecha_hora }}</td>
                             <td>
-                                <a href="{{ route('consultas_medicas.show', $consulta->id) }}" class="btn btn-info btn-sm">👁 Ver</a>
+                                <a href="{{ route('consultas_medicas.show', $consulta->id) }}" class="btn btn-info btn-sm">👀 Ver</a>
                                 <a href="{{ route('consultas_medicas.edit', $consulta->id) }}" class="btn btn-warning btn-sm">✏ Editar</a>
                                 <form action="{{ route('consultas_medicas.destroy', $consulta->id) }}" method="POST" class="d-inline">
                                     @csrf

@@ -18,9 +18,14 @@ use App\Http\Controllers\ImagenesController;
 */
 
 // Ruta por defecto (pantalla inicial de Laravel)
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('layouts.app'); // Mostrará el menú con tu layout
+});*/
+
+Route::get('/', function () {
+    return view('dashboard');
 });
+
 
 
 Route::resource('medicos', MedicosController::class); //CRUD medicos
