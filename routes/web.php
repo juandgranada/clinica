@@ -1,37 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MedicosController;
-use App\Http\Controllers\PacientesController;
-use App\Http\Controllers\ConsultasMedicasController;
-use App\Http\Controllers\ImagenesController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MedicoController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\ConsultaMedicaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Aquí registras todas las rutas web de tu aplicación.
-| Estas rutas son cargadas por RouteServiceProvider y
-| todas estarán bajo el middleware "web".
-|
-*/
+// Mostrar login cuando se abre el proyecto
+Route::get('/', [AuthController::class, 'loginForm'])->name('login')->middleware('guest');
+Route::get('/login', [AuthController::class, 'loginForm'])->middleware('guest');
+Route::post('/login', [AuthController::class, 'login']);
 
-// Ruta por defecto (pantalla inicial de Laravel)
-/*Route::get('/', function () {
-    return view('layouts.app'); // Mostrará el menú con tu layout
-});*/
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('dashboard');
+// Rutas protegidas
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::resource('medicos', MedicoController::class);
+    Route::resource('pacientes', PacienteController::class);
+    Route::resource('consultas_medicas', ConsultaMedicaController::class);
+    Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');
+    Route::delete('/imagenes/{id}', [ImagenesController::class, 'destroy'])->name('imagenes.destroy');
+
 });
 
 
 
-Route::resource('medicos', MedicosController::class); //CRUD medicos
-Route::resource('pacientes', PacientesController::class); //CRUD pacientes
-Route::resource('consultas_medicas', ConsultasMedicasController::class); //CRUD consultas medicas
-Route::post('/imagenes', [ImagenesController::class, 'store'])->name('imagenes.store');
-Route::delete('/imagenes/{id}', [ImagenesController::class, 'destroy'])->name('imagenes.destroy');
+
+
+
 
 
