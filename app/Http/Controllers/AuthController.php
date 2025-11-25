@@ -10,6 +10,10 @@ class AuthController extends Controller
     // Mostrar formulario de login
     public function loginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
         return view('auth.login');
     }
 
@@ -21,13 +25,10 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        // Intentar autenticación
         if (Auth::attempt($credentials)) {
 
-            // Regenerar sesión por seguridad
             $request->session()->regenerate();
 
-            // Redirigir según rol
             switch (Auth::user()->rol) {
                 case 'ADMINISTRADOR':
                     return redirect()->route('dashboard');
@@ -43,7 +44,6 @@ class AuthController extends Controller
             }
         }
 
-        // Error si no coincide usuario o contraseña
         return back()->withErrors([
             'loginError' => 'Usuario o contraseña incorrectos.',
         ]);
@@ -58,4 +58,3 @@ class AuthController extends Controller
         return redirect('/login');
     }
 }
-
