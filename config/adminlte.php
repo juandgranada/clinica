@@ -329,18 +329,26 @@ return [
             'text' => 'Médicos',
             'url'  => 'medicos',
             'icon' => 'fas fa-user-md',
+            'can'  => 'ADMINISTRADOR',
         ],
         [
             'text' => 'Pacientes',
             'url'  => 'pacientes',
             'icon' => 'fas fa-user-injured',
+            'can'  => 'ADMINISTRADOR-MEDICO',  
         ],
         [
             'text' => 'Consultas',
             'url'  => 'consultas_medicas',
             'icon' => 'fas fa-notes-medical',
+            'can'  => 'ADMINISTRADOR-MEDICO',
         ],
-
+        [
+            'text' => 'Mis consultas',
+            'url'  => 'mis_consultas',
+            'icon' => 'fas fa-stethoscope',
+            'can'  => 'PACIENTE', // SOLO paciente
+        ],
 
     ],
 

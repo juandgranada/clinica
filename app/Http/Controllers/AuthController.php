@@ -34,10 +34,10 @@ class AuthController extends Controller
                     return redirect()->route('dashboard');
 
                 case 'MEDICO':
-                    return redirect()->route('consultas_medicas.index');
+                    return redirect()->route('dashboard');
 
                 case 'PACIENTE':
-                    return redirect()->route('pacientes.index');
+                    return redirect()->route('dashboard');
 
                 default:
                     return redirect()->route('dashboard');
